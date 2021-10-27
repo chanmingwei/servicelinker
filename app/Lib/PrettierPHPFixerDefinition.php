@@ -1,3 +1,6 @@
+<?php
+namespace App\Lib;
+
 use PhpCsFixer\FixerDefinition\FixerDefinitionInterface;
 
 class PrettierPHPFixerDefinition implements FixerDefinitionInterface

@@ -1,7 +1,6 @@
 <?php
 
 return [
-
     /*
     |--------------------------------------------------------------------------
     | Filename & Format
@@ -11,7 +10,7 @@ return [
     |
     */
 
-    'filename'  => '_ide_helper.php',
+    'filename' => '_ide_helper.php',
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +110,8 @@ return [
     'include_helpers' => false,
 
     'helper_files' => [
-        base_path().'/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
+        base_path() .
+        '/vendor/laravel/framework/src/Illuminate/Support/helpers.php',
     ],
 
     /*
@@ -127,9 +127,7 @@ return [
     |
     */
 
-    'model_locations' => [
-        'app',
-    ],
+    'model_locations' => ['app'],
 
     /*
     |--------------------------------------------------------------------------
@@ -140,9 +138,7 @@ return [
     |
     */
 
-    'ignored_models' => [
-
-    ],
+    'ignored_models' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -169,7 +165,10 @@ return [
     */
 
     'extra' => [
-        'Eloquent' => ['Illuminate\Database\Eloquent\Builder', 'Illuminate\Database\Query\Builder'],
+        'Eloquent' => [
+            'Illuminate\Database\Eloquent\Builder',
+            'Illuminate\Database\Query\Builder',
+        ],
         'Session' => ['Illuminate\Session\Store'],
     ],
 
@@ -185,9 +184,7 @@ return [
     |
     */
 
-    'interfaces' => [
-
-    ],
+    'interfaces' => [],
 
     /*
     |--------------------------------------------------------------------------
@@ -215,9 +212,7 @@ return [
     |  ),
     |
     */
-    'custom_db_types' => [
-
-    ],
+    'custom_db_types' => [],
 
     /*
      |--------------------------------------------------------------------------
@@ -304,5 +299,4 @@ return [
     'post_migrate' => [
         // 'ide-helper:models --nowrite',
     ],
-
 ];
