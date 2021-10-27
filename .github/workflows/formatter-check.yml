@@ -1,0 +1,59 @@
+name: formatter-check
+
+on: [pull_request]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+    test:
+        runs-on: ubuntu-latest
+
+        name: static analysis, linting
+
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Get Composer Cache Directory
+              id: composer-cache
+              run: |
+                  echo "::set-output name=dir::$(composer config cache-files-dir)"
+            - uses: actions/cache@v2
+              with:
+                  path: ${{ steps.composer-cache.outputs.dir }}
+                  key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-composer-
+
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: 8.0.3
+                  extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, mysql, mysqli, pdo_mysql, bcmath, soap, intl, gd, exif, iconv, imagick
+                  coverage: none
+
+            - name: Install dependencies
+              run: |
+                cp .env.local .env
+                composer install
+
+            - name: Get Nodejs
+              uses: actions/setup-node@v2
+              with:
+                  node-version: '16'
+                  cache: 'npm'
+                  cache-dependency-path: api/package-lock.json
+
+            - name: Install NodeJs Deps
+              run: npm install
+
+            - name: Execute PHP static types analysis
+              run: vendor/bin/phpstan analyze --memory-limit=2G
+
+            - name: Execute PHP formatter check
+              run: vendor/bin/php-cs-fixer fix --diff --dry-run
+
+            - name: Execute JS formatter check
+              run: npm run lint
