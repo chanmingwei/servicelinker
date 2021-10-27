@@ -9,8 +9,8 @@
         "prod": "npm run production",
         "production": "mix --production",
         "prettier": "prettier",
-        "lint": "eslint ./resources",
-        "fix": "eslint ./resources fix"
+        "lint": "eslint resources",
+        "fix": "eslint resources --fix"
     },
     "devDependencies": {
         "@prettier/plugin-php": "^0.17.5",
