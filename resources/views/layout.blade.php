@@ -1,0 +1,9 @@
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+        @section('content')
+        @show
+    </body>
+</html>
