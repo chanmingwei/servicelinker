@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ServiceProviderController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,7 @@ Route::get("/login", function () {
 });
 
 Route::get('/profile', function () {
+    info("check user", [Auth::user()]);
     return view("profile");
 })->middleware("auth.basic");
 

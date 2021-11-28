@@ -23,7 +23,7 @@ class ServiceProviderController extends Controller
 
     public function list(Request $request)
     {
-        // info("check user", [Auth::user(),"session"=>$request->session()]);
+        info("check user", [Auth::user(), "session" => $request->session()]);
         return response()->json(DB::table('service_providers')->get());
     }
 }
