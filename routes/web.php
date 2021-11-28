@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ServiceProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,7 @@ Route::get("/login", function () {
 Route::get('/profile', function () {
     return view("profile");
 })->middleware("auth.basic");
+
 
 Route::post("/authenticate", [LoginController::class, 'authenticate']);
 Route::post("/logout", [LoginController::class, 'logout']);
