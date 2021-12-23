@@ -27,8 +27,9 @@ Route::get("/login", function () {
 Route::get('/profile', function () {
     info("check user", [Auth::user()]);
     return view("profile");
-})->middleware("auth.basic");
+});
 
 
-Route::post("/authenticate", [LoginController::class, 'authenticate']);
+Route::post("/login/user", [LoginController::class, 'authenticateUser']);
+Route::post("/login/customer", [LoginController::class, 'authenticateCustomer']);
 Route::post("/logout", [LoginController::class, 'logout']);
