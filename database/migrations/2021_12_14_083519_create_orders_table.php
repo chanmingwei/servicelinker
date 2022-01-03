@@ -17,7 +17,14 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->foreignIdFor(App\Models\Customer::class);
             $table->foreignIdFor(App\Models\ServiceProvider::class)->nullable();
-            $table->json('horse_power')->nullable();
+            $table->string('billing_address');
+            $table->timestamps();
+        });
+        Schema::create('services', function (Blueprint $table) {
+            $table->id();
+            $table->foreignIdFor(App\Models\Order::class);
+            $table->integer('aircon_number');
+            $table->string('service_type');
             $table->float('price')->nullable();
             $table->timestamps();
         });
@@ -31,5 +38,6 @@ class CreateOrdersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('orders');
+        Schema::dropIfExists('services');
     }
 }
